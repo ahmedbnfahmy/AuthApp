@@ -1,0 +1,28 @@
+info:
+  name: Create Portal
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{HttpBaseUrl}}/auth/portals"
+  headers:
+    - name: Host
+      value: "{{TenantHost}}"
+    - name: Authorization
+      value: "Bearer {{accessToken}}"
+  body:
+    type: json
+    data: |-
+      {
+        "slug": "north",
+        "moderatorEmail": "mod@acme.com",
+        "moderatorPassword": "password123"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

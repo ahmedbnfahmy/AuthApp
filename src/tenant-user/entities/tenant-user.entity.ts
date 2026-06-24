@@ -1,4 +1,12 @@
-import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  PrimaryColumn,
+} from 'typeorm';
+import { TenantRole } from '../../common/enums/tenant-role.enum';
+import { ModeratorPortal } from '../../moderator-portal/entities/moderator-portal.entity';
 import { User } from '../../user/entities/user.entity';
 import { Tenant } from '../../tenant/entities/tenant.entity';
 
@@ -10,14 +18,21 @@ export class TenantUser {
   @PrimaryColumn()
   userId: string;
 
-  @Column({ type: 'varchar', length: 50, default: 'member' })
-  role: string;
+  @Column({ type: 'varchar', length: 50, default: TenantRole.Customer })
+  role: TenantRole;
 
-  @ManyToOne(() => Tenant, tenant => tenant.tenantUsers)
+  @Column({ type: 'uuid', nullable: true })
+  portalId: string | null;
+
+  @ManyToOne(() => Tenant, (tenant) => tenant.tenantUsers)
   @JoinColumn({ name: 'tenantId' })
   tenant: Tenant;
 
-  @ManyToOne(() => User, user => user.tenantUsers)
+  @ManyToOne(() => User, (user) => user.tenantUsers)
   @JoinColumn({ name: 'userId' })
   user: User;
+
+  @ManyToOne(() => ModeratorPortal, { nullable: true })
+  @JoinColumn({ name: 'portalId' })
+  portal: ModeratorPortal | null;
 }

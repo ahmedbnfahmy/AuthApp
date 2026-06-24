@@ -1,22 +1,26 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { ModeratorPortalModule } from '../moderator-portal/moderator-portal.module';
 import { TenantModule } from '../tenant/tenant.module';
 import { UserModule } from '../user/user.module';
-import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
+import { RolesGuard } from './guards/roles.guard';
+import { PortalRoleGuard, TenantGuard } from './guards/tenant.guard';
 
 @Module({
   imports: [
     UserModule,
     TenantModule,
+    ModeratorPortalModule,
     JwtModule.register({
       global: true,
-      secret: 'super-secret-key', // Move to .env in production
+      secret: process.env.JWT_SECRET ?? 'super-secret-key',
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, TenantGuard, PortalRoleGuard, RolesGuard],
   controllers: [AuthController],
-  exports: [AuthService],
+  exports: [AuthService, TenantGuard, RolesGuard],
 })
 export class AuthModule {}

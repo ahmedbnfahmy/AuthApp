@@ -25,4 +25,8 @@ export class UserService {
 
     return repo.save(user);
   }
+
+  async verifyPassword(user: User, password: string): Promise<boolean> {
+    return bcrypt.compare(password, user.passwordHash);
+  }
 }

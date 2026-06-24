@@ -1,0 +1,28 @@
+info:
+  name: Add Member
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{HttpBaseUrl}}/auth/members"
+  headers:
+    - name: Host
+      value: "{{PortalHost}}"
+    - name: Authorization
+      value: "Bearer {{accessToken}}"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "cashier@acme.com",
+        "password": "password123",
+        "role": "cashier"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

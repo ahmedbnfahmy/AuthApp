@@ -1,0 +1,25 @@
+info:
+  name: Login Tenant Admin
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{HttpBaseUrl}}/auth/login"
+  headers:
+    - name: Host
+      value: "{{TenantHost}}"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "jane@acme.com",
+        "password": "password123"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

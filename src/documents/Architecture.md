@@ -108,3 +108,11 @@ SELECT * FROM invoices WHERE tenant_id = 'tenant_abc987';
 * **Token Expiry on Tenant Suspension:** If a tenant misses a payment and is suspended, your auth app must revoke all active tokens associated with that `tenant_id` immediately.
 
 Are you building this auth system from scratch using something like Node.js/Go, or are you looking to integrate a third-party provider (like Auth0, Clerk, or Supabase) to handle the multi-tenancy for you?
+
+---
+
+## Feature documentation
+
+Per-feature design and API contracts live under [documents/features/](./features/) (index: [documents/README.md](./README.md)).
+
+Implemented features include hierarchical subdomain RBAC: roles (`admin`, `moderator`, `cashier`, `customer`), moderator portals, host-based login, and member management. Start with [roles-and-subdomains/Design.md](./features/roles-and-subdomains/Design.md).
