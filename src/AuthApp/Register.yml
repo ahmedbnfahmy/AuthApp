@@ -1,0 +1,24 @@
+info:
+  name: Register
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{HttpBaseUrl}}/auth/register"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "jane@acme.com",
+        "password": "password123",
+        "tenantName": "Acme Corp",
+        "domainSlug": "acme"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

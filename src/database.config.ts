@@ -1,6 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { entities } from './database/entities';
+import { resolveDbLogging } from './database/logging.config';
 
 export const getDatabaseConfig = (configService: ConfigService): TypeOrmModuleOptions => ({
   type: 'postgres',
@@ -12,4 +13,5 @@ export const getDatabaseConfig = (configService: ConfigService): TypeOrmModuleOp
   entities,
   migrations: ['dist/database/migrations/*.js'],
   synchronize: false,
+  logging: resolveDbLogging(configService.get<string>('DB_LOGGING')),
 });

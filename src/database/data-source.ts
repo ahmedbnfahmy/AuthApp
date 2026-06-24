@@ -1,6 +1,7 @@
 import { config } from 'dotenv';
 import { DataSource } from 'typeorm';
 import { entities } from './entities';
+import { resolveDbLogging } from './logging.config';
 
 config();
 
@@ -13,4 +14,5 @@ export default new DataSource({
   database: process.env.DB_DATABASE,
   entities,
   migrations: [`${__dirname}/migrations/*{.ts,.js}`],
+  logging: resolveDbLogging(process.env.DB_LOGGING),
 });

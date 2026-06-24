@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { TenantModule } from '../tenant/tenant.module';
+import { UserModule } from '../user/user.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
+    UserModule,
+    TenantModule,
     JwtModule.register({
       global: true,
       secret: 'super-secret-key', // Move to .env in production

@@ -6,3 +6,5 @@ variables:
     value: "3000"
   - name: ver
     value: v1
+  - name: HttpBaseUrl
+    value: http://{{Host}}:{{port}}
