@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TenantModule } from './tenant/tenant.module';
 import { AuthModule } from './auth/auth.module';
+import { HealthModule } from './health/health.module';
 import { getDatabaseConfig } from './database.config';
 
 @Module({
@@ -19,6 +20,7 @@ import { getDatabaseConfig } from './database.config';
     UserModule,
     TenantModule,
     AuthModule,
+    HealthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

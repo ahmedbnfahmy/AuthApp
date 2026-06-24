@@ -1,0 +1,8 @@
+name: Test
+variables:
+  - name: Host
+    value: localhost
+  - name: port
+    value: "3000"
+  - name: ver
+    value: v1

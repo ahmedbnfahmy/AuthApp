@@ -14,7 +14,7 @@ async function bootstrap() {
       'TypeORM',
     );
   }
-
-  await app.listen(3000);
+  Logger.log('Server is running on port 3000');
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
