@@ -398,4 +398,6 @@ Temporary Items
 dist
 .webpack
 .serverless/**/*.zip
-.cursor
+
+# Cursor IDE (plans, local config)
+.cursor/
